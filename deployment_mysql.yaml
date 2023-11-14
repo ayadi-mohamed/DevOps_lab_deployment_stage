@@ -20,9 +20,9 @@ spec:
             - name: MYSQL_USER
               value: "ayadinou"
             - name: MYSQL_PASSWORD
-              value: "ayadinou"
+              value: "ayadinou1601"
             - name: MYSQL_ROOT_PASSWORD
-              value: "ayadinou"
+              value: "ayadinou1601"
             - name: MYSQL_DATABASE
               value: "pet_store"
           ports:
