@@ -10,10 +10,10 @@ pipeline {
                     def minikubeServer = 'ayadinou@192.168.1.9'
 
                     // SSH to the Minikube server and retrieve certificates
-                    sh "ssh -o StrictHostKeyChecking no ${minikubeServer} 'cat /home/ayadinou/.minikube/ca.crt' > ca.crt"
-                    sh "ssh ${minikubeServer} 'cat /home/ayadinou/.minikube/profiles/minikube/client.crt' > client.crt"
-                    sh "ssh ${minikubeServer} 'cat /home/ayadinou/.minikube/profiles/minikube/client.key' > client.key"
-                    sh "ssh ${minikubeServer} 'cat $KUBECONFIG' > ~/.kube/config"
+                    sh "ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat /home/ayadinou/.minikube/ca.crt' > ca.crt"
+                    sh "ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat /home/ayadinou/.minikube/profiles/minikube/client.crt' > client.crt"
+                    sh "ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat /home/ayadinou/.minikube/profiles/minikube/client.key' > client.key"
+                    sh "ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat $KUBECONFIG' > ~/.kube/config"
 
                 }
             }
