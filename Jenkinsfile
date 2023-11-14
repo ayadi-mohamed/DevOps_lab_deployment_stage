@@ -10,11 +10,11 @@ pipeline {
                     def minikubeServer = 'ayadinou@192.168.1.9'
 
                     // SSH to the Minikube server and retrieve certificates
-                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat /home/ayadinou/.minikube/ca.crt' > ca.crt"
+                    /*sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat /home/ayadinou/.minikube/ca.crt' > ca.crt"
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat /home/ayadinou/.minikube/profiles/minikube/client.crt' > client.crt"
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat /home/ayadinou/.minikube/profiles/minikube/client.key' > client.key"
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat $KUBECONFIG' > ~/.kube/config"
-
+*/
                 }
             }
         }
@@ -24,10 +24,14 @@ pipeline {
                 script {
                     // Use kubectl to interact with the Minikube cluster
                     
-
+                    sh "ls"
                     // Your deployment steps go here
                     // Example: Deploy a Kubernetes manifest file
-                    sh 'kubectl get pods'
+                    sh 'sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} kubectl get pods' 
+                    sh 'sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} kubectl create deployment --image=ayadinou/tp_devops_spring_boot_app -n pet-owner -- '
+                    sh 'sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} kubectl create deployment --image=ayadinou/tp_devops_spring_boot_app -n pet-owner '
+
+                    
                 }
             }
         }
