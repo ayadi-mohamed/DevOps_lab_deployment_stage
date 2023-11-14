@@ -27,6 +27,7 @@ pipeline {
                     sh "sshpass -p ayadinou1601 scp *.yaml ayadinou@192.168.1.9:/home/ayadinou/deployment_devops"
                     // Your deployment steps go here
                     // Example: Deploy a Kubernetes manifest file
+                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl delete ns mysql"
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl delete ns pet-owner"
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl create ns pet-owner"
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl apply -f /home/ayadinou/deployment_devops/deployment.yaml"
