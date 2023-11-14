@@ -24,7 +24,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
           - name: DATABASE_HOST
-            value: "mysqldb-service"
+            value: "mysqldb-service.mysql.svc.cluster.local"
           - name: DATABASE_USER
             value: "ayadinou"
           - name: DATABASE_PASSWORD
