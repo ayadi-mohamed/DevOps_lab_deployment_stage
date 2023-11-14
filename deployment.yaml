@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - image: ayadinou/tp_devops_spring_boot_app:2.7.4-73
-        name: pet_owner
+        name: pet-owner
         imagePullPolicy: IfNotPresent
         env:
           - name: DATABASE_HOST
