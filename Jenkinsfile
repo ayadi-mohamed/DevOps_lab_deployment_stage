@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Deploy to Minikube') {
+        stage('Deploy to kubernetes cluster') {
             steps {
                 script {
                     // Use kubectl to interact with the Minikube cluster
