@@ -7,8 +7,7 @@ pipeline {
                 script {
                     env.KUBECONFIG = '/home/ayadinou/.kube/config'
                     // Set the Minikube server address
-                    def minikubeServer = 'ayadinou@192.168.1.9'
-
+                    scp ayadinou@192.168.1.9:/home/ayadinou/deployment_devops/config ~/.kube/config 
                     // SSH to the Minikube server and retrieve certificates
                     /*sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat /home/ayadinou/.minikube/ca.crt' > ca.crt"
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat /home/ayadinou/.minikube/profiles/minikube/client.crt' > client.crt"
@@ -24,10 +23,10 @@ pipeline {
                 script {
                     // Use kubectl to interact with the Minikube cluster
                     
-                    sh "sshpass -p ayadinou1601 scp *.yaml ayadinou@192.168.1.9:/home/ayadinou/deployment_devops"
+                   // sh "sshpass -p ayadinou1601 scp *.yaml ayadinou@192.168.1.9:/home/ayadinou/deployment_devops"
                     // Your deployment steps go here
                     // Example: Deploy a Kubernetes manifest file
-                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl delete ns mysql"
+              /*      sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl delete ns mysql"
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl delete ns pet-owner"
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl create ns pet-owner"
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl apply -f /home/ayadinou/deployment_devops/deployment.yaml"
@@ -38,7 +37,17 @@ pipeline {
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl apply -f /home/ayadinou/deployment_devops/deployment_mysql.yaml"
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl apply -f /home/ayadinou/deployment_devops/sercice_mysql.yaml"
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl apply -f /home/ayadinou/deployment_devops/pvc.yaml"
+*/
 
+                    sh "kubectl delete ns mysql"
+                    sh "kubectl delete ns pet-owner"
+                    sh "kubectl create ns pet-owner"
+                    sh "kubectl apply -f deployment.yaml"
+                    sh "kubectl apply -f service_pet.yaml"
+                    sh "kubectl create ns mysql"
+                    sh "kubectl apply -f deployment_mysql.yaml"
+                    sh "kubectl apply -f sercice_mysql.yaml"
+                    sh "kubectl apply -f pvc.yaml"
 
                  //   sh 'sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} kubectl create deployment --image=ayadinou/tp_devops_spring_boot_app -n pet-owner -- '
                    // sh 'sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} kubectl create deployment --image=ayadinou/tp_devops_spring_boot_app -n pet-owner '
