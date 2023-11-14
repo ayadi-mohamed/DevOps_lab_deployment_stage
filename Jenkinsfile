@@ -7,7 +7,7 @@ pipeline {
                 script {
                     env.KUBECONFIG = '/home/ayadinou/.kube/config'
                     // Set the Minikube server address
-                    sh "scp ayadinou@192.168.1.9:/home/ayadinou/deployment_devops/config ~/.kube/config"
+                    sh "sshpass -p ayadinou1601 scp ayadinou@192.168.1.9:/home/ayadinou/deployment_devops/config ~/.kube/config"
                     // SSH to the Minikube server and retrieve certificates
                     /*sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat /home/ayadinou/.minikube/ca.crt' > ca.crt"
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat /home/ayadinou/.minikube/profiles/minikube/client.crt' > client.crt"
