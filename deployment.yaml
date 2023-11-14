@@ -19,7 +19,7 @@ spec:
         app: pet-owner
     spec:
       containers:
-      - image: ayadinou/tp_devops_spring_boot_app:2.7.4-69
+      - image: ayadinou/tp_devops_spring_boot_app:2.7.4-73
         name: pet_owner
         imagePullPolicy: IfNotPresent
         env:
