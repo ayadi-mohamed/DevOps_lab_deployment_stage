@@ -27,7 +27,18 @@ pipeline {
                     sh "ls"
                     // Your deployment steps go here
                     // Example: Deploy a Kubernetes manifest file
-                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl get pods "
+                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl delete ns pet-owner"
+                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl create ns pet-owner"
+                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl apply -f deployment.yaml"
+
+                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl apply -f service_pet.yaml"
+                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl create ns mysql"
+
+                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl apply -f deployment_mysql.yaml"
+                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl apply -f service_mysql.yaml"
+                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl apply -f pvc.yaml"
+
+
                  //   sh 'sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} kubectl create deployment --image=ayadinou/tp_devops_spring_boot_app -n pet-owner -- '
                    // sh 'sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} kubectl create deployment --image=ayadinou/tp_devops_spring_boot_app -n pet-owner '
 
