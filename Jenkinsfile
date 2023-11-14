@@ -27,9 +27,9 @@ pipeline {
                     sh "ls"
                     // Your deployment steps go here
                     // Example: Deploy a Kubernetes manifest file
-                    sh 'sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} kubectl get pods' 
-                    sh 'sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} kubectl create deployment --image=ayadinou/tp_devops_spring_boot_app -n pet-owner -- '
-                    sh 'sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} kubectl create deployment --image=ayadinou/tp_devops_spring_boot_app -n pet-owner '
+                    sh 'sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} kubectl get pods"' 
+                 //   sh 'sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} kubectl create deployment --image=ayadinou/tp_devops_spring_boot_app -n pet-owner -- '
+                   // sh 'sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} kubectl create deployment --image=ayadinou/tp_devops_spring_boot_app -n pet-owner '
 
                     
                 }
