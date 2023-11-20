@@ -40,7 +40,7 @@ pipeline {
                     sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 kubectl apply -f /home/ayadinou/deployment_devops/pvc.yaml" */
 
                    // sh "kubectl config use-context minikube"
-                    sh "sleep 5"
+                    sh "sleep 5 && export KUBECONFIG=~/.kube/config"
                     sh "kubectl config view"
                     sh "kubectl delete ns mysql"
                     sh "kubectl delete ns pet-owner"
