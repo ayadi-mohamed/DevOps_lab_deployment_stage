@@ -9,9 +9,9 @@ pipeline {
                     // Set the Minikube server address
                     sh "sshpass -p ayadinou1601 scp ayadinou@192.168.1.9:/home/ayadinou/deployment_devops/config ~/.kube/config"
                     // SSH to the Minikube server and retrieve certificates
-                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 'cat /home/ayadinou/.minikube/ca.crt' > ~/ca.crt"
-                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 'cat /home/ayadinou/.minikube/profiles/minikube/client.crt' > ~/client.crt"
-                    sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ayadinou@192.168.1.9 'cat /home/ayadinou/.minikube/profiles/minikube/client.key' > ~/client.key"
+                    sh "sshpass -p ayadinou1601 scp -o StrictHostKeyChecking=no ayadinou@192.168.1.9:/home/ayadinou/.minikube/ca.crt ~/ca.crt"
+                    sh "sshpass -p ayadinou1601 scp -o StrictHostKeyChecking=no ayadinou@192.168.1.9:/home/ayadinou/.minikube/profiles/minikube/client.crt ~/client.crt"
+                    sh "sshpass -p ayadinou1601 scp -o StrictHostKeyChecking=no ayadinou@192.168.1.9:/home/ayadinou/.minikube/profiles/minikube/client.key ~/client.key"
                    // sh "sshpass -p ayadinou1601 ssh -o StrictHostKeyChecking=no ${minikubeServer} 'cat $KUBECONFIG' > ~/.kube/config"
 
                 }
