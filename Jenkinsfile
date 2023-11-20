@@ -5,9 +5,9 @@ pipeline {
         stage('Setup') {
             steps {
                 script {
-                    env.KUBECONFIG = '~/.kube/config'
+                    env.KUBECONFIG = '/var/jenkins_home/.kube/config'
                     // Set the Minikube server address
-                    sh "sshpass -p ayadinou1601 scp ayadinou@192.168.1.9:/home/ayadinou/deployment_devops/config ~/.kube/config"
+                    sh "sshpass -p ayadinou1601 scp ayadinou@192.168.1.9:/home/ayadinou/deployment_devops/config /var/jenkins_home/.kube/config"
                     // SSH to the Minikube server and retrieve certificates
                     sh "sshpass -p ayadinou1601 scp -o StrictHostKeyChecking=no ayadinou@192.168.1.9:/home/ayadinou/.minikube/ca.crt /var/jenkins_home/.kube/ca.crt"
                     sh "sshpass -p ayadinou1601 scp -o StrictHostKeyChecking=no ayadinou@192.168.1.9:/home/ayadinou/.minikube/profiles/minikube/client.crt /var/jenkins_home/.kube/client.crt"
@@ -41,8 +41,8 @@ pipeline {
 
                    // sh "kubectl config use-context minikube"
                     sh "cat ~/.kube/config "
-                    sh "sleep 5 && export KUBECONFIG=~/.kube/config"
-                    sh " kubectl config get-clusters"
+                    sh "sleep 5 && export KUBECONFIG=/var/jenkins_home/.kube/config"
+               //     sh " kubectl config get-clusters"
                     sh "kubectl config view && echo $KUBECONFIG"
                     sh "kubectl delete ns mysql"
                     sh "kubectl delete ns pet-owner"
