@@ -41,6 +41,7 @@ pipeline {
 
                    // sh "kubectl config use-context minikube"
                     sh "sleep 5 && export KUBECONFIG=~/.kube/config"
+                    sh " kubectl config get-clusters"
                     sh "kubectl config view && echo $KUBECONFIG"
                     sh "kubectl delete ns mysql"
                     sh "kubectl delete ns pet-owner"
