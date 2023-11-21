@@ -24,16 +24,55 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
           - name: DATABASE_HOST
-            value: "mysqldb-service.mysql.svc.cluster.local"
+            valueFrom:
+              configMapKeyRef:
+                name: database-config
+                key: database-host
           - name: DATABASE_USER
-            value: "ayadinou"
+            valueFrom:
+              secretKeyRef:
+                name: database-secrets
+                key: database-user
           - name: DATABASE_PASSWORD
-            value: "ayadinou1601"
+            valueFrom:
+              secretKeyRef:
+                name: database-secrets
+                key: database-password
           - name: DATABASE_ROOT_PASSWORD
-            value: "ayainou1601"
+            valueFrom:
+              secretKeyRef:
+                name: database-secrets
+                key: database-root-password
           - name: DATABASE_NAME
-            value: "pet_store"
+            valueFrom:
+              configMapKeyRef:
+                name: database-config
+                key: database-name
           - name: DATABASE_PORT
-            value: "3306"
+            valueFrom:
+              configMapKeyRef:
+                name: database-config
+                key: database-port
         ports:
           - containerPort: 8080
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: database-config
+  namespace: pet-owner
+data:
+  database-host: mysqldb-service.mysql.svc.cluster.local
+  database-name: pet_store
+  database-port: "3306"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: database-secrets
+  namespace: pet-owner
+type: Opaque
+data:
+  database-user: YXlhaGlu
+  database-password: YXlhaGluMTYwMQ==
+  database-root-password: YXlhaW5vdTE2MDE=
