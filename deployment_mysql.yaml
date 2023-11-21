@@ -18,13 +18,25 @@ spec:
           image: mysql
           env:
             - name: MYSQL_USER
-              value: "ayadinou"
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: MYSQL_USER
             - name: MYSQL_PASSWORD
-              value: "ayadinou1601"
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: MYSQL_PASSWORD
             - name: MYSQL_ROOT_PASSWORD
-              value: "ayadinou1601"
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: MYSQL_ROOT_PASSWORD
             - name: MYSQL_DATABASE
-              value: "pet_store"
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: MYSQL_DATABASE
           ports:
             - containerPort: 3306
           volumeMounts:
@@ -33,3 +45,21 @@ spec:
       volumes:
         - name: mysql-storage
           emptyDir: {}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secrets
+  namespace: mysql
+data:
+  MYSQL_PASSWORD: YXlhZGlub3UxNjAx
+  MYSQL_ROOT_PASSWORD: YXlhZGluOjE2MDE=
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+  namespace: mysql
+data:
+  MYSQL_USER: YXlhZGlub3U=
+  MYSQL_DATABASE: cGV0X3N0b3Jl
