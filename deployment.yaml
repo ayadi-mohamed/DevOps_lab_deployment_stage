@@ -73,6 +73,6 @@ metadata:
   namespace: pet-owner
 type: Opaque
 data:
-  database-user: YXlhaGlu
-  database-password: YXlhaGluMTYwMQ==
-  database-root-password: YXlhaW5vdTE2MDE=
+  database-user: YXlhZGlub3U=
+  database-password: YXlhZGlub3UxNjAx
+  database-root-password: YXlhZGlub3UxNjAx
