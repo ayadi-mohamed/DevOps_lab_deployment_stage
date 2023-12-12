@@ -1,7 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
-  kind: Kustomization
-  
-  resources:
+kind: Kustomization
+resources:
     - deployment.yaml
     - deployment_mysql.yaml
     - pvc.yaml
